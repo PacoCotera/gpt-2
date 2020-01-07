@@ -14,7 +14,7 @@ import tqdm
 from tensorflow.core.protobuf import rewriter_config_pb2
 from tensorflow.python import pywrap_tensorflow
 
-import model, sample, encoder
+import model, sample, encoder_sp as encoder
 from load_dataset import load_dataset, Sampler, TextSampler
 from accumulate import AccumulatingOptimizer
 import memory_saving_gradients
@@ -144,7 +144,7 @@ def randomize(context, hparams, p):
 
 def main():
     args = parser.parse_args()
-    enc = encoder.get_encoder(args.model_name)
+    enc = encoder.get_encoder(args.model_name, "models")
     hparams = model.default_hparams()
     hparams.res_dropout = args.dropout
     hparams.attn_dropout = args.dropout
